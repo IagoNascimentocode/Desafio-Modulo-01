@@ -51,7 +51,7 @@ app.get('/todos', checksExistsUserAccount, (request, response) => {
 });
 
 app.post('/todos', checksExistsUserAccount, (request, response) => {
-  const { deadline, title } = request.body;
+  const { title, deadline } = request.body;
 
   const { user } = request;
 
@@ -65,7 +65,7 @@ app.post('/todos', checksExistsUserAccount, (request, response) => {
 
   user.todos.push(task);
 
-  return response.status(201).send();
+  return response.status(201).json(task);
 });
 
 app.put('/todos/:id', checksExistsUserAccount, (request, response) => {
